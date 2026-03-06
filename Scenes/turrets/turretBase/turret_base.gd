@@ -96,11 +96,15 @@ func open_details_pane():
 	Globals.hud.add_child(details)
 	Globals.hud.open_details_pane = details
 
+var details_pane : Node = null
+
 func close_details_pane():
+	if is_instance_valid(Globals.hud.open_details_pane):
+		Globals.hud.open_details_pane.queue_free()
+		Globals.hud.open_details_pane = null
+
 	draw_range = false
 	queue_redraw()
-	Globals.hud.open_details_pane.queue_free()
-	Globals.hud.open_details_pane = null
 
 func _on_collision_area_input_event(_viewport, _event, _shape_idx):
 	if deployed and Input.is_action_just_pressed("LeftClick"):
