@@ -4,13 +4,15 @@ var next_wait_time := 0
 var waited := 0
 var open_details_pane : PanelContainer
 
-func	 _ready():
+func _ready():
 	Globals.hud = self
 	Globals.baseHpChanged.connect(update_hp)
 	Globals.goldChanged.connect(update_gold)
 	Globals.waveStarted.connect(show_wave_count)
 	Globals.waveCleared.connect(show_wave_timer)
 	Globals.enemyDestroyed.connect(update_enemy_count)
+	var cursor = get_node("BubbleCursor")
+
 
 func update_hp(newHp, maxHp):
 	%HPLabel.text = "HP: "+str(round(newHp))+"/"+str(round(maxHp))

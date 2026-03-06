@@ -1,5 +1,7 @@
 extends Turret
 
+
+
 func attack():
 	if is_instance_valid(current_target):
 		$AnimatedSprite2D.play("default")

@@ -3,6 +3,11 @@ class_name Turret
 
 signal turretUpdated
 
+func _ready():
+	add_to_group("turrets") #Globals.bubble_cursor.register_turret(self)
+#func _exit_tree():
+#	Globals.bubble_cursor.unregister_turret(self)
+
 var turret_type := "":
 	set(value):
 		turret_type = value

@@ -3,6 +3,8 @@ extends Turret
 var bulletSpeed := 200.0
 var bulletPierce := 1
 
+
+
 func attack():
 	if is_instance_valid(current_target):
 		var projectileScene := preload("res://Scenes/turrets/projectileTurret/bullet/bulletBase.tscn")

@@ -16,6 +16,7 @@ var turretsNode : Node2D
 var projectilesNode : Node2D
 var currentMap : Node2D
 var hud : Control
+var bubble_cursor: Node2D
 
 func restart_current_level():
 	var currentLevelScene := load(currentMap.scene_file_path)

@@ -7,6 +7,8 @@ var ray_extension := 0.0
 var ray_length := 400.0
 var ray_duration := 2.0
 
+
+
 func _process(delta):
 	super._process(delta)
 	if ray_enabled and ray_extension < 1.0:
