@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d0xfbj143d5ob" path="res://Scenes/ui/hud.gd" id="2_cy82p"]
 [ext_resource type="PackedScene" uid="uid://d0otd33ubv3hq" path="res://Scenes/ui/turretUI/turret_buy_container.tscn" id="3_pljl8"]
 [ext_resource type="Script" uid="uid://2u3ktpjm74y5" path="res://Scenes/ui/turretUI/turrets_panel.gd" id="3_ryupq"]
-[ext_resource type="Script" uid="uid://dgf8rip5ys876" path="res://Scenes/ui/BubbleCursor.gd" id="5_brlrh"]
+[ext_resource type="Script" uid="uid://dgf8rip5ys876" path="res://Scenes/turrets/BubbleCursor.gd" id="5_brlrh"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_22s4b")

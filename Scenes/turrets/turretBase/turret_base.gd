@@ -36,6 +36,9 @@ var attack_range := 1.0:
 var damage := 1.0
 var turret_level := 1
 
+var turret_radius: float = 20.0
+var is_highlighted: bool = false
+
 func _process(_delta):
 	if not deployed:
 		@warning_ignore("standalone_ternary")
@@ -45,8 +48,14 @@ func _process(_delta):
 		look_at(current_target.position) if is_instance_valid(current_target) else try_get_closest_target()
 
 func _draw():
+	# Range circle
 	if draw_range:
-		draw_circle(Vector2(0,0), attack_range, "3ccd50a9", false, 1, true)
+		draw_circle(Vector2.ZERO, attack_range, Color("3ccd50a9"))
+
+	# Highlight ring (from bubble cursor)
+	if is_highlighted:
+		draw_circle(Vector2.ZERO, attack_range + 8, Color(1, 1, 0, 0.25))
+		
 
 func set_placeholder():
 	modulate = Color("6eff297a")
@@ -129,3 +138,10 @@ func attack():
 		pass
 	else:
 		try_get_closest_target()
+
+func get_radius() -> float:
+	return 20.0
+	
+func set_highlighted(state: bool):
+	is_highlighted = state
+	queue_redraw()
