@@ -73,7 +73,7 @@ unique_name_in_owner = true
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="BubbleCursor" type="Node2D" parent="UI/HUD"]
+[node name="BubbleCursor" type="Node2D" parent="UI"]
 unique_name_in_owner = true
 z_index = 100
 script = ExtResource("5_brlrh")
