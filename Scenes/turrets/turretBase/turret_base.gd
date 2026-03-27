@@ -3,11 +3,6 @@ class_name Turret
 
 signal turretUpdated
 
-func _ready():
-	add_to_group("turrets") #Globals.bubble_cursor.register_turret(self)
-#func _exit_tree():
-#	Globals.bubble_cursor.unregister_turret(self)
-
 var turret_type := "":
 	set(value):
 		turret_type = value
@@ -35,6 +30,10 @@ var attack_range := 1.0:
 		$DetectionArea/CollisionShape2D.shape.radius = value
 var damage := 1.0
 var turret_level := 1
+
+func _ready() -> void:
+	# Register so BubbleCursor can discover and select this turret.
+	add_to_group("towers")
 
 func _process(_delta):
 	if not deployed:
@@ -103,10 +102,17 @@ func close_details_pane():
 	Globals.hud.open_details_pane = null
 
 func _on_collision_area_input_event(_viewport, _event, _shape_idx):
+	# The BubbleCursor handles all click-to-select logic by calling
+	# open_details_pane() / close_details_pane() directly and then marking the
+	# input as handled. This callback only fires when the bubble cursor is NOT
+	# present (e.g. during testing without the UI CanvasLayer).
+	if is_instance_valid(Globals.bubble_cursor):
+		return  # BubbleCursor already handled it
 	if deployed and Input.is_action_just_pressed("LeftClick"):
 		if is_instance_valid(Globals.hud.open_details_pane):
 			if Globals.hud.open_details_pane.turret == self:
 				close_details_pane()
+				modulate = Color.WHITE
 				return
 			Globals.hud.open_details_pane.turret.close_details_pane()
 		open_details_pane()
