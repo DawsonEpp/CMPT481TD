@@ -9,6 +9,8 @@ var placeholder = null
 
 func _ready():
 	Globals.goldChanged.connect(check_can_purchase)
+	# Register in group so BubbleCursor can detect active drags.
+	add_to_group("drag_textures")
 
 func _gui_input(event):
 	if event is InputEventMouseButton and check_can_purchase(Globals.currentMap.gold):
