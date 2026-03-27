@@ -11,7 +11,7 @@ func _ready():
 	Globals.waveStarted.connect(show_wave_count)
 	Globals.waveCleared.connect(show_wave_timer)
 	Globals.enemyDestroyed.connect(update_enemy_count)
-	var cursor = get_node("BubbleCursor")
+	#var cursor = get_node("BubbleCursor")
 
 
 func update_hp(newHp, maxHp):
