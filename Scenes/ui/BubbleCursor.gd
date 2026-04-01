@@ -52,7 +52,6 @@ func _ready() -> void:
 	_last_mouse_vp = get_viewport().get_mouse_position()
 	_radius = min_radius
 
-
 func _process(delta: float) -> void:
 	var vp_mouse: Vector2 = get_viewport().get_mouse_position()
 
@@ -119,7 +118,7 @@ func _draw() -> void:
 # Input — this is where bubble selection happens
 # ──────────────────────────────────────────────────────────
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if not (event is InputEventMouseButton):
 		return
 	var mb := event as InputEventMouseButton

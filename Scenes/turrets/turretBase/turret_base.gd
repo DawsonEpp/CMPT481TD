@@ -98,16 +98,22 @@ func open_details_pane():
 func close_details_pane():
 	draw_range = false
 	queue_redraw()
-	Globals.hud.open_details_pane.queue_free()
+	if is_instance_valid(Globals.hud.open_details_pane):
+		Globals.hud.open_details_pane.queue_free()
 	Globals.hud.open_details_pane = null
+	# Consume the click so BubbleCursor/_on_collision_area_input_event
+	# don't see the same mouse-release and immediately re-open a pane.
+	if get_viewport():
+		get_viewport().set_input_as_handled()
 
-func _on_collision_area_input_event(_viewport, _event, _shape_idx):
-	# The BubbleCursor handles all click-to-select logic by calling
-	# open_details_pane() / close_details_pane() directly and then marking the
-	# input as handled. This callback only fires when the bubble cursor is NOT
-	# present (e.g. during testing without the UI CanvasLayer).
-	if is_instance_valid(Globals.bubble_cursor):
-		return  # BubbleCursor already handled it
+
+func _on_collision_area_input_event(_viewport, event, _shape_idx):
+	# BubbleCursor (when enabled) handles selection via _unhandled_input and
+	# calls set_input_as_handled() — so this callback is skipped automatically.
+	if Globals.bubble_cursor_enabled:
+		return
+	if not (event is InputEventMouseButton):
+		return
 	if deployed and Input.is_action_just_pressed("LeftClick"):
 		if is_instance_valid(Globals.hud.open_details_pane):
 			if Globals.hud.open_details_pane.turret == self:
