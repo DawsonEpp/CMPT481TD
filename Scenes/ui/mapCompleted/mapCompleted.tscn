@@ -13,7 +13,7 @@ script = ExtResource("1_r4qa7")
 
 [node name="CenterPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(260, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -25,20 +25,20 @@ theme_override_constants/separation = 10
 
 [node name="GameOverText" type="Label" parent="CenterPanel/VBoxContainer"]
 layout_mode = 2
-text = "Map Completed!
-"
+text = "🎉 You Win!
+All 10 waves survived."
+horizontal_alignment = 1
+
+[node name="SavedLabel" type="Label" parent="CenterPanel/VBoxContainer"]
+layout_mode = 2
+text = "Stats saved to XML."
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="CenterPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="RetryButton" type="Button" parent="CenterPanel/VBoxContainer"]
-layout_mode = 2
-text = "Restart"
-
 [node name="MainMenuButton" type="Button" parent="CenterPanel/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
 
-[connection signal="pressed" from="CenterPanel/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="CenterPanel/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
