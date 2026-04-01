@@ -42,10 +42,16 @@ var _sel_start_t:  float = 0.0
 # ──────────────────────────────────────────────────────────
 
 func _ready() -> void:
+	if not Globals.bubble_cursor_enabled:
+		set_process(false)
+		set_process_input(false)
+		visible = false
+		return
 	Globals.bubble_cursor = self
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	_last_mouse_vp = get_viewport().get_mouse_position()
 	_radius = min_radius
+
 
 func _process(delta: float) -> void:
 	var vp_mouse: Vector2 = get_viewport().get_mouse_position()
