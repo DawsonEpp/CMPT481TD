@@ -44,7 +44,6 @@ func _calculate_accumulated_gold(map_id: String) -> int:
 		total_gold += int(enemy_count) * 10
 	return total_gold
 
-
 func get_base_damage(damage):
 	if gameOver:
 		return
@@ -52,6 +51,19 @@ func get_base_damage(damage):
 	Globals.baseHpChanged.emit(baseHP, baseMaxHp)
 	if baseHP <= 0:
 		gameOver = true
-		var gameOverPanelScene := preload("res://Scenes/ui/gameOver/game_over_panel.tscn")
-		var gameOverPanel := gameOverPanelScene.instantiate()
-		Globals.hud.add_child(gameOverPanel)
+		_on_game_over()
+
+func _on_game_over():
+	var stats := {
+		"won": false,
+		"map": Globals.selected_map,
+		"display_waves_completed": $PathSpawner.display_wave,
+		"total_waves": EnemyPath.DISPLAY_TOTAL_WAVES,
+		"gold_remaining": gold,
+		"base_hp_remaining": 0,
+		"bubble_cursor_enabled": Globals.bubble_cursor_enabled,
+	}
+	Globals.gameEnded.emit(false, stats)
+	var gameOverPanelScene := preload("res://Scenes/ui/gameOver/game_over_panel.tscn")
+	var gameOverPanel := gameOverPanelScene.instantiate()
+	Globals.hud.add_child(gameOverPanel)
