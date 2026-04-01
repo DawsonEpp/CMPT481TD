@@ -5,7 +5,10 @@ var map_type := "":
 		map_type = val
 		baseHP = Data.maps[val]["baseHp"]
 		baseMaxHp = Data.maps[val]["baseHp"]
-		gold = Data.maps[val]["startingGold"]
+		# Starting gold = base map gold + accumulated gold from waves 1-(BLOONS_START_WAVE)
+		var base_gold = Data.maps[val]["startingGold"]
+		var accumulated := _calculate_accumulated_gold(val)
+		gold = base_gold + accumulated
 		$PathSpawner.map_type = val
 
 var gameOver := false
