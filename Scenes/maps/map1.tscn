@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ceo44f3u14hlm"]
 
-[ext_resource type="Script" path="res://Scenes/maps/baseMap.gd" id="1_k8s62"]
+[ext_resource type="Script" uid="uid://b8o0s1bs1kk61" path="res://Scenes/maps/baseMap.gd" id="1_k8s62"]
 [ext_resource type="Texture2D" uid="uid://b8725vkgyjjo8" path="res://Assets/maps/map1.webp" id="1_p0w4w"]
-[ext_resource type="Script" path="res://Scenes/maps/EnemySpawner.gd" id="2_351sa"]
+[ext_resource type="Script" uid="uid://drk14s21pw61f" path="res://Scenes/maps/EnemySpawner.gd" id="2_351sa"]
 
 [sub_resource type="Curve2D" id="Curve2D_bs0b4"]
 _data = {
@@ -28,7 +28,6 @@ one_shot = true
 [node name="WaveDelayTimer" type="Timer" parent="PathSpawner"]
 wait_time = 5.0
 one_shot = true
-autostart = true
 
 [node name="Turrets" type="Node2D" parent="."]
 

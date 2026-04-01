@@ -7,7 +7,7 @@ var map_type := "":
 		baseMaxHp = Data.maps[val]["baseHp"]
 		# Starting gold = base map gold + accumulated gold from waves 1-(BLOONS_START_WAVE)
 		var base_gold = Data.maps[val]["startingGold"]
-		var accumulated := _calculate_accumulated_gold(val)
+		var accumulated = _calculate_accumulated_gold(val)
 		gold = base_gold + accumulated
 		$PathSpawner.map_type = val
 
@@ -23,16 +23,20 @@ func _ready():
 	Globals.turretsNode = $Turrets
 	Globals.projectilesNode = $Projectiles
 	Globals.currentMap = self
-	
 
 ## Calculates how much gold the player would have earned from completing
-## waves 1 through BLOONS_START_WAVE (i.e., rounds 1-29 equivalent).
+## waves 1 through BLOONS_START_WAVE using the map's own difficulty formula.
+## Uses a conservative average gold yield per enemy across all possible types.
 func _calculate_accumulated_gold(map_id: String) -> int:
 	var settings = Data.maps[map_id]["spawner_settings"]
 	var diff_settings = settings["difficulty"]
 	var spawn_count: int = settings["wave_spawn_count"]
 	var start_wave: int = EnemyPath.BLOONS_START_WAVE
-	var total_gold = 0
+	var total_gold := 0
+
+	# Average gold yield across all 8 enemy types weighted roughly equally (~14)
+	const AVG_GOLD_PER_ENEMY := 10
+
 	for w in range(1, start_wave + 1):
 		var diff: float
 		if diff_settings["multiplies"]:
@@ -40,8 +44,7 @@ func _calculate_accumulated_gold(map_id: String) -> int:
 		else:
 			diff = diff_settings["initial"] + diff_settings["increase"] * w
 		var enemy_count = round(spawn_count * diff)
-		# Each enemy yields an average goldYield — use redDino baseline of 10
-		total_gold += int(enemy_count) * 10
+		total_gold += int(enemy_count) * AVG_GOLD_PER_ENEMY
 	return total_gold
 
 func get_base_damage(damage):
