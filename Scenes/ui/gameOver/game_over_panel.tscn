@@ -13,7 +13,7 @@ script = ExtResource("1_7egy2")
 
 [node name="CenterPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(240, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -25,8 +25,12 @@ theme_override_constants/separation = 10
 
 [node name="GameOverText" type="Label" parent="CenterPanel/VBoxContainer"]
 layout_mode = 2
-text = "Game Over
-"
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="SavedLabel" type="Label" parent="CenterPanel/VBoxContainer"]
+layout_mode = 2
+text = "Stats saved to XML."
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="CenterPanel/VBoxContainer"]
