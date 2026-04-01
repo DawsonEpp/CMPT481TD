@@ -12,7 +12,6 @@ signal enemyDestroyed(remain)
 @warning_ignore("unused_signal")
 signal gameEnded(won: bool, stats: Dictionary)
 
-
 var selected_map := ""
 var mainNode : Node2D
 var turretsNode : Node2D
@@ -21,6 +20,7 @@ var currentMap : Node2D
 var hud : Control
 var bubble_cursor: Node2D
 var bubble_cursor_enabled: bool = true
+var normal_cursor_tracker: Node2D
 
 func restart_current_level():
 	var currentLevelScene := load(currentMap.scene_file_path)
