@@ -35,7 +35,7 @@ func _calculate_accumulated_gold(map_id: String) -> int:
 	var total_gold := 0
 
 	# Average gold yield across all 8 enemy types weighted roughly equally (~14)
-	const AVG_GOLD_PER_ENEMY := 10
+	const AVG_GOLD_PER_ENEMY := 5
 
 	for w in range(1, start_wave + 1):
 		var diff: float
