@@ -23,26 +23,33 @@ grow_vertical = 2
 texture = ExtResource("2_jl1fa")
 
 [node name="MenuButtons" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(200, 150)
+custom_minimum_size = Vector2(220, 180)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -20.0
-offset_bottom = 20.0
+offset_left = -240.0
+offset_top = -90.0
+offset_bottom = 90.0
 grow_horizontal = 0
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuButtons"]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="startButton" type="Button" parent="MenuButtons/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Start Game"
+
+[node name="BubbleCursorCheck" type="CheckBox" parent="MenuButtons/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Bubble Cursor"
 
 [node name="quitButton" type="Button" parent="MenuButtons/VBoxContainer"]
 layout_mode = 2
@@ -50,4 +57,5 @@ size_flags_vertical = 3
 text = "Quit"
 
 [connection signal="pressed" from="MenuButtons/VBoxContainer/startButton" to="." method="_on_start_button_pressed"]
+[connection signal="toggled" from="MenuButtons/VBoxContainer/BubbleCursorCheck" to="." method="_on_bubble_cursor_check_toggled"]
 [connection signal="pressed" from="MenuButtons/VBoxContainer/quitButton" to="." method="_on_quit_button_pressed"]
